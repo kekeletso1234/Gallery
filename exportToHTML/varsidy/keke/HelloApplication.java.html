@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>HelloApplication.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HelloApplication.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">varsidy</span><span class="s2">.</span><span class="s1">proxxyandamylia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">application</span><span class="s2">.</span><span class="s1">Application</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Scene</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">Image</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">ImageView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">Font</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Pos</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">stage</span><span class="s2">.</span><span class="s1">Stage</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">HelloApplication </span><span class="s0">extends </span><span class="s1">Application </span><span class="s2">{</span>
+
+    <span class="s0">private int </span><span class="s1">currentIndex </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+    <span class="s0">private final </span><span class="s1">String</span><span class="s2">[] </span><span class="s1">images </span><span class="s2">= </span><span class="s0">new </span><span class="s1">String</span><span class="s2">[</span><span class="s3">10</span><span class="s2">];</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">start</span><span class="s2">(</span><span class="s1">Stage mainStage</span><span class="s2">) {</span>
+        <span class="s1">mainStage</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Interactive Image Viewer&quot;</span><span class="s2">);</span>
+
+        <span class="s1">FlowPane galleryPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">FlowPane</span><span class="s2">();</span>
+        <span class="s1">galleryPane</span><span class="s2">.</span><span class="s1">setVgap</span><span class="s2">(</span><span class="s3">15</span><span class="s2">);</span>
+        <span class="s1">galleryPane</span><span class="s2">.</span><span class="s1">setHgap</span><span class="s2">(</span><span class="s3">15</span><span class="s2">);</span>
+        <span class="s1">galleryPane</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">15</span><span class="s2">));</span>
+       <span class="s1">galleryPane</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: linear-gradient(from 50% 90% to 100% 100%, black , #1c0133);&quot;</span><span class="s2">);</span>
+
+
+        <span class="s5">// Prepare image paths and thumbnails</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s3">10</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">String imgPath </span><span class="s2">= </span><span class="s4">&quot;file:///C:/Users/kekeletso/Documents/Proxxy/IamProxxy/src/main/resources/Images/keke&quot; </span><span class="s2">+ (</span><span class="s1">i </span><span class="s2">+ </span><span class="s3">1</span><span class="s2">) + </span><span class="s4">&quot;.jpg&quot;</span><span class="s2">;</span>
+            <span class="s1">images</span><span class="s2">[</span><span class="s1">i</span><span class="s2">] = </span><span class="s1">imgPath</span><span class="s2">;</span>
+
+            <span class="s1">ImageView thumbView </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageView</span><span class="s2">();</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">Image thumbImage </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Image</span><span class="s2">(</span><span class="s1">imgPath</span><span class="s2">);</span>
+                <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setImage</span><span class="s2">(</span><span class="s1">thumbImage</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Error loading image: &quot; </span><span class="s2">+ </span><span class="s1">imgPath</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setFitWidth</span><span class="s2">(</span><span class="s3">100</span><span class="s2">);</span>
+            <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setFitHeight</span><span class="s2">(</span><span class="s3">80</span><span class="s2">);</span>
+            <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-opacity: 0.7; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.0, 3, 3);&quot;</span><span class="s2">);</span>
+
+            <span class="s0">int </span><span class="s1">finalI </span><span class="s2">= </span><span class="s1">i</span><span class="s2">;</span>
+
+            <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setOnMouseClicked</span><span class="s2">(</span><span class="s1">event -&gt; openImageView</span><span class="s2">(</span><span class="s1">finalI</span><span class="s2">));</span>
+            <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setOnMouseEntered</span><span class="s2">(</span><span class="s1">event -&gt; thumbView</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-opacity: 1.0; -fx-effect: dropshadow(gaussian, rgba(215,239,120,0.8), 8, 0.0, 4, 4);&quot;</span><span class="s2">));</span>
+            <span class="s1">thumbView</span><span class="s2">.</span><span class="s1">setOnMouseExited</span><span class="s2">(</span><span class="s1">event -&gt; thumbView</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-opacity: 0.7; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.0, 3, 3);&quot;</span><span class="s2">));</span>
+
+            <span class="s1">galleryPane</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">thumbView</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s5">// Add Exit button to gallery</span>
+        <span class="s1">Button exitGalleryButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;Exit Gallery&quot;</span><span class="s2">);</span>
+        <span class="s1">exitGalleryButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s1">Font</span><span class="s2">.</span><span class="s1">font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s3">18</span><span class="s2">));</span>
+        <span class="s1">exitGalleryButton</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color:linear-gradient(from 60% 90% to 100% 100%, #650707 , #1c0133); -fx-text-fill: white; -fx-padding: 8px;&quot;</span><span class="s2">);</span>
+        <span class="s1">exitGalleryButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">event -&gt; mainStage</span><span class="s2">.</span><span class="s1">close</span><span class="s2">());</span>
+
+        <span class="s1">galleryPane</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">exitGalleryButton</span><span class="s2">);</span>
+
+        <span class="s1">Scene mainScene </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">galleryPane</span><span class="s2">, </span><span class="s3">400</span><span class="s2">, </span><span class="s3">450</span><span class="s2">);</span>
+        <span class="s1">mainStage</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s1">mainScene</span><span class="s2">);</span>
+        <span class="s1">mainStage</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">openImageView</span><span class="s2">(</span><span class="s0">int </span><span class="s1">index</span><span class="s2">) {</span>
+        <span class="s1">currentIndex </span><span class="s2">= </span><span class="s1">index</span><span class="s2">;</span>
+
+        <span class="s1">Stage imageStage </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Stage</span><span class="s2">();</span>
+        <span class="s1">imageStage</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;View Full Image&quot;</span><span class="s2">);</span>
+
+        <span class="s1">BorderPane layout </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BorderPane</span><span class="s2">();</span>
+
+        <span class="s1">ImageView largeImageView </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageView</span><span class="s2">();</span>
+
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: linear-gradient(from 60% 90% to 100% 100%, black , #1c0133);&quot;</span><span class="s2">);</span>
+        <span class="s1">loadImage</span><span class="s2">(</span><span class="s1">largeImageView</span><span class="s2">, </span><span class="s1">currentIndex</span><span class="s2">);</span>
+
+        <span class="s1">Button exitButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s4">&quot;Exit Full Size&quot;</span><span class="s2">);</span>
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s1">Font</span><span class="s2">.</span><span class="s1">font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s3">18</span><span class="s2">));</span>
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: yellow; -fx-text-fill: black; -fx-padding: 8px;&quot;</span><span class="s2">);</span>
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">event -&gt; imageStage</span><span class="s2">.</span><span class="s1">close</span><span class="s2">());</span>
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: yellow; -fx-text-fill: black; -fx-padding: 8px;&quot;</span><span class="s2">);</span>
+        <span class="s1">Button prevButton </span><span class="s2">= </span><span class="s1">createNavigationButton</span><span class="s2">(</span><span class="s4">&quot;Previous&quot;</span><span class="s2">);</span>
+        <span class="s1">Button nextButton </span><span class="s2">= </span><span class="s1">createNavigationButton</span><span class="s2">(</span><span class="s4">&quot;Next&quot;</span><span class="s2">);</span>
+
+        <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">exitButton</span><span class="s2">);</span>
+        <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">prevButton</span><span class="s2">);</span>
+        <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">nextButton</span><span class="s2">);</span>
+
+        <span class="s1">exitButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">event -&gt; </span><span class="s2">{</span>
+            <span class="s1">imageStage</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+        <span class="s2">});</span>
+        <span class="s1">prevButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">event -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">currentIndex </span><span class="s2">&gt; </span><span class="s3">0</span><span class="s2">) {</span>
+                <span class="s1">currentIndex</span><span class="s2">--;</span>
+                <span class="s1">loadImage</span><span class="s2">(</span><span class="s1">largeImageView</span><span class="s2">, </span><span class="s1">currentIndex</span><span class="s2">);</span>
+                <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">prevButton</span><span class="s2">);</span>
+                <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">nextButton</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">nextButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">event -&gt; </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">currentIndex </span><span class="s2">&lt; </span><span class="s1">images</span><span class="s2">.</span><span class="s1">length </span><span class="s2">- </span><span class="s3">1</span><span class="s2">) {</span>
+                <span class="s1">currentIndex</span><span class="s2">++;</span>
+                <span class="s1">loadImage</span><span class="s2">(</span><span class="s1">largeImageView</span><span class="s2">, </span><span class="s1">currentIndex</span><span class="s2">);</span>
+                <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">prevButton</span><span class="s2">);</span>
+                <span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">nextButton</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">HBox navigationButtons </span><span class="s2">= </span><span class="s0">new </span><span class="s1">HBox</span><span class="s2">(</span><span class="s3">15</span><span class="s2">, </span><span class="s1">prevButton</span><span class="s2">, </span><span class="s1">nextButton</span><span class="s2">, </span><span class="s1">exitButton</span><span class="s2">);</span>
+        <span class="s1">navigationButtons</span><span class="s2">.</span><span class="s1">setAlignment</span><span class="s2">(</span><span class="s1">Pos</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+        <span class="s1">navigationButtons</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s3">10</span><span class="s2">));</span>
+
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">setCenter</span><span class="s2">(</span><span class="s1">largeImageView</span><span class="s2">);</span>
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">setBottom</span><span class="s2">(</span><span class="s1">navigationButtons</span><span class="s2">);</span>
+
+        <span class="s1">Scene imageScene </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">layout</span><span class="s2">, </span><span class="s3">750</span><span class="s2">, </span><span class="s3">700</span><span class="s2">);</span>
+        <span class="s1">imageStage</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s1">imageScene</span><span class="s2">);</span>
+        <span class="s1">imageStage</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">Button createNavigationButton</span><span class="s2">(</span><span class="s1">String label</span><span class="s2">) {</span>
+        <span class="s1">Button button </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s1">label</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s1">Font</span><span class="s2">.</span><span class="s1">font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s3">18</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #315063; -fx-text-fill: white; -fx-padding: 8px;&quot;</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">button</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">updateButtonState</span><span class="s2">(</span><span class="s1">Button button</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span>
+                <span class="s2">(</span><span class="s1">button</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s4">&quot;Previous&quot;</span><span class="s2">) &amp;&amp; </span><span class="s1">currentIndex </span><span class="s2">== </span><span class="s3">0</span><span class="s2">) ||</span>
+                <span class="s2">(</span><span class="s1">button</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s4">&quot;Next&quot;</span><span class="s2">) &amp;&amp; </span><span class="s1">currentIndex </span><span class="s2">== </span><span class="s1">images</span><span class="s2">.</span><span class="s1">length </span><span class="s2">- </span><span class="s3">1</span><span class="s2">)) {</span>
+            <span class="s1">button</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #cccccc; -fx-text-fill: #888888; -fx-padding: 8px;&quot;</span><span class="s2">);</span>
+            <span class="s1">button</span><span class="s2">.</span><span class="s1">setDisable</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">button</span><span class="s2">.</span><span class="s1">setStyle</span><span class="s2">(</span><span class="s4">&quot;-fx-background-color: #0d4263; -fx-text-fill: white; -fx-padding: 8px;&quot;</span><span class="s2">);</span>
+            <span class="s1">button</span><span class="s2">.</span><span class="s1">setDisable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">loadImage</span><span class="s2">(</span><span class="s1">ImageView view</span><span class="s2">, </span><span class="s0">int </span><span class="s1">index</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">String path </span><span class="s2">= </span><span class="s1">images</span><span class="s2">[</span><span class="s1">index</span><span class="s2">];</span>
+            <span class="s1">Image fullImage </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Image</span><span class="s2">(</span><span class="s1">path</span><span class="s2">);</span>
+            <span class="s1">view</span><span class="s2">.</span><span class="s1">setImage</span><span class="s2">(</span><span class="s1">fullImage</span><span class="s2">);</span>
+            <span class="s1">view</span><span class="s2">.</span><span class="s1">setFitWidth</span><span class="s2">(</span><span class="s3">1100</span><span class="s2">);</span>
+            <span class="s1">view</span><span class="s2">.</span><span class="s1">setFitHeight</span><span class="s2">(</span><span class="s3">650</span><span class="s2">);</span>
+            <span class="s1">view</span><span class="s2">.</span><span class="s1">setPreserveRatio</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Error loading image at index &quot; </span><span class="s2">+ </span><span class="s1">index</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">launch</span><span class="s2">(</span><span class="s1">args</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
