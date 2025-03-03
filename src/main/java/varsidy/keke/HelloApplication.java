@@ -18,7 +18,7 @@ import javafx.util.Duration;
 public class HelloApplication extends Application {
 
     private int currentIndex = 0;
-    private final String[] images = new String[10];
+    private final String[] images = new String[19];
 
     @Override
     public void start(Stage mainStage) {
@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
         galleryPane.setStyle("-fx-background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg'); -fx-background-size: cover; " +
                 "-fx-opacity: 0.9");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             String imgPath = "file:Images/keke" + (i + 1) + ".jpg";
             images[i] = imgPath;
 
