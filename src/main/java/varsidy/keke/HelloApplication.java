@@ -25,10 +25,13 @@ public class HelloApplication extends Application {
         mainStage.setTitle("Interactive Image Viewer");
 
         FlowPane galleryPane = new FlowPane();
-        galleryPane.setVgap(15);
-        galleryPane.setHgap(15);
+        galleryPane.setVgap(25);
+        galleryPane.setHgap(25);
         galleryPane.setPadding(new Insets(15));
-        galleryPane.setStyle("-fx-background-color: linear-gradient(from 50% 90% to 100% 100%, black , #a051e3);");
+
+        // Set a publicly accessible background image
+        galleryPane.setStyle("-fx-background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg'); -fx-background-size: cover; " +
+                "-fx-opacity: 0.9");
 
         for (int i = 0; i < 10; i++) {
             String imgPath = "file:Images/keke" + (i + 1) + ".jpg";
@@ -42,9 +45,8 @@ public class HelloApplication extends Application {
                 System.err.println("Error loading image: " + imgPath);
             }
 
-
-            thumbView.setFitWidth(100);
-            thumbView.setFitHeight(80);
+            thumbView.setFitWidth(150);
+            thumbView.setFitHeight(100);
             thumbView.setStyle("-fx-opacity: 0.7; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.0, 3, 3);");
 
             int finalI = i;
@@ -55,24 +57,21 @@ public class HelloApplication extends Application {
             });
 
             thumbView.setOnMouseEntered(event -> {
-                applyHoverTransition(thumbView);
+                applyHoverTransition(thumbView, 1.2, 1.2); // Grow slightly
                 thumbView.setStyle("-fx-opacity: 1.0; -fx-effect: dropshadow(gaussian, rgba(215,239,120,0.8), 8, 0.0, 4, 4);");
             });
 
             thumbView.setOnMouseExited(event -> {
-                applyHoverTransition(thumbView);
-                thumbView.setStyle("-fx-opacity: 0.0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.0), 8, 0.0, 4, 4);");
+                applyHoverTransition(thumbView, 1.0, 1.0); // Shrink back to normal
+                thumbView.setStyle("-fx-opacity: 0.7; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.0, 3, 3);");
             });
-
-
-            thumbView.setOnMouseExited(event -> thumbView.setStyle("-fx-opacity: 0.7; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.0, 3, 3);"));
 
             galleryPane.getChildren().add(thumbView);
         }
 
         Button exitGalleryButton = new Button("Exit Gallery");
         exitGalleryButton.setFont(Font.font("Arial", 18));
-        exitGalleryButton.setStyle("-fx-background-color:linear-gradient(from 60% 90% to 100% 100%, #650707 , #1c0133); -fx-text-fill: white; -fx-padding: 8px;");
+        exitGalleryButton.setStyle("-fx-background-color:linear-gradient(from 60% 90% to 100% 100%, #650707 , #904fca); -fx-text-fill: #d1a9a9; -fx-padding: 8px;");
         exitGalleryButton.setOnAction(event -> mainStage.close());
 
         galleryPane.getChildren().add(exitGalleryButton);
@@ -81,11 +80,10 @@ public class HelloApplication extends Application {
         mainStage.setScene(mainScene);
         mainStage.show();
     }
-
-    private void applyHoverTransition(ImageView thumbView) {
+    private void applyHoverTransition(ImageView thumbView, double toX, double toY) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), thumbView);
-        scaleTransition.setToX(1.2);
-        scaleTransition.setToY(1.2);
+        scaleTransition.setToX(toX);
+        scaleTransition.setToY(toY);
         scaleTransition.play();
     }
 
@@ -97,7 +95,6 @@ public class HelloApplication extends Application {
         translateTransition.play();
     }
 
-
     private void openImageView(int index) {
         currentIndex = index;
 
@@ -105,7 +102,10 @@ public class HelloApplication extends Application {
         imageStage.setTitle("View Full Image");
 
         BorderPane layout = new BorderPane();
-        layout.setStyle("-fx-background-color: linear-gradient(from 60% 90% to 100% 100%, #1c1c1e , #b271ed);");
+
+        // Use the same image for background on the full image view
+        layout.setStyle("-fx-background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg'); -fx-background-size: cover; " +
+                "-fx-opacity: 0.9");
 
         ImageView largeImageView = new ImageView();
         loadImage(largeImageView, currentIndex);
